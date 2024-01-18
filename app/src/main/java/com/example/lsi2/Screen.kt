@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -35,72 +36,160 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 
+
 @Composable
 fun Screen1(navController: NavController){
-
-
-    Column (
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(15.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-
-        var text by remember { mutableStateOf("") }
-
-        Column {
-            OutlinedTextField(
-                value = text,
-                onValueChange = { newText -> text = newText },
-                label = { Text("Enter text") },
-                modifier = Modifier.padding(16.dp)
+    Column {
+        Image(
+            painter = painterResource(id = R.drawable.logo2),
+            contentDescription = "Logo",
+            modifier = Modifier
+                .padding(5.dp)
+                .fillMaxWidth()
+                .size(50.dp)
+        )
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(5.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = "Find ID Number",
+                modifier = Modifier
+                    .padding(start = 10.dp, top = 10.dp)
+                    .fillMaxWidth(),
+                style = TextStyle(
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 28.sp
+                )
             )
 
-        }
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(10.dp)
+                    .background(Color.White),
+            ) {
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(645.dp),
+                    shape = RoundedCornerShape(15.dp),
+//                    elevation = 5.dp
+                ) {
+                    Box(modifier = Modifier
+                        .padding(16.dp)
+                    ) {
 
-        Button(onClick = { navController.navigate("screen2") }) {
-            Text("ПОИСК")
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(45.dp),
+                            horizontalAlignment = Alignment.CenterHorizontally
+                        ) {
+
+                            var text by remember { mutableStateOf("") }
+
+                                OutlinedTextField(
+                                    value = text,
+                                    onValueChange = { newText -> text = newText },
+                                    label = { Text("Enter text") },
+                                    modifier = Modifier.padding(16.dp)
+                                )
+
+                            Button(onClick = { navController.navigate("screen2") }) {
+                                Text("ПОИСК")
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
-
-
-
 }
 
 @Composable
 fun Screen2(navController: NavController) {
-    Column(){
-        Image(painter = painterResource(id = R.drawable.photo_1),
-            contentDescription = "image",
-            contentScale = ContentScale.Crop,
+    Column {
+        Image(
+            painter = painterResource(id = R.drawable.logo2),
+            contentDescription = "Logo",
             modifier = Modifier
-                .padding(3.dp)
-                .size(64.dp)
-                .clip(CircleShape)
+                .padding(5.dp)
+                .fillMaxWidth()
+                .size(50.dp)
         )
         Column(
             modifier = Modifier
-                .padding(start = 10.dp, top = 10.dp)
+                .fillMaxSize()
+                .padding(5.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Text(text = "Name and Surname")
-            Text(text = "This is a short Description and some Information about this person.")
-        }
+            Text(
+                text = "Patient's personal INFO",
+                modifier = Modifier
+                    .padding(start = 10.dp, top = 10.dp)
+                    .fillMaxWidth(),
+                style = TextStyle(
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 28.sp
+                )
+            )
 
-        Column(){
-            Button(onClick = { navController.navigate("screen3") }) {
-                Text("ВЫБРАТЬ ВРАЧА")
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(10.dp)
+            ) {
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(645.dp),
+                    shape = RoundedCornerShape(15.dp),
+//                    elevation = 5.dp
+                ) {
+                    Box(modifier = Modifier
+                        .padding(16.dp)
+                    ) {
+                        Column(modifier = Modifier
+                        ) {
+                            Image(
+                                painter = painterResource(id = R.drawable.person_1),
+                                contentDescription = "image",
+                                contentScale = ContentScale.Crop,
+                                modifier = Modifier
+                                    .padding(3.dp)
+                                    .size(64.dp)
+                                    .clip(CircleShape)
+                            )
+                            Column(
+                                modifier = Modifier
+                                    .padding(start = 10.dp, top = 10.dp)
+                            ) {
+                                Text(text = "Name and Surname")
+                                Text(text = "This is a short Description and some Information about this person.")
+                            }
+
+                            Column() {
+                                Button(onClick = { navController.navigate("screen3") }) {
+                                    Text("ВЫБРАТЬ ВРАЧА")
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
     }
-
-
 }
 
 @Composable
 fun Screen3() {
+
     Column {
         Image(
-            painter = painterResource(id = R.drawable.photo_1),
+            painter = painterResource(id = R.drawable.logo2),
             contentDescription = "Logo",
             modifier = Modifier
                 .padding(5.dp)
@@ -128,6 +217,7 @@ fun Screen3() {
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(10.dp)
+                    .background(Color.LightGray),
             ) {
                 Card(
                     modifier = Modifier
@@ -156,4 +246,6 @@ fun Screen3() {
         }
     }
 }
+
+
 
