@@ -2,7 +2,9 @@ package com.example.lsi2
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -22,6 +24,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.lsi2.ui.theme.Purple40
 
 @Composable
 fun MyRow(item: ItemRowModel) {
@@ -30,28 +33,25 @@ fun MyRow(item: ItemRowModel) {
         mutableStateOf(false)
     }
 
-    Row(
+    Column(
         modifier = Modifier
             .padding(3.dp)
             .fillMaxWidth()
-            .background(Color.White)
     ) {
-        Image(painter = painterResource(id = item.imageId),
-            contentDescription = "image",
-            contentScale = ContentScale.Crop,
+        Box(
             modifier = Modifier
                 .padding(3.dp)
                 .size(64.dp)
                 .clip(CircleShape)
-        )
-        Column(
-            modifier = Modifier
-                .padding(start = 10.dp, top = 10.dp)
         ) {
-            Text(text = item.title)
-            Text(text = item.content)
+            Image(
+                painter = painterResource(id = item.imageId),
+                contentDescription = "image",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier.border(2.dp, Purple40)
+            )
         }
-
+        Text(text = item.title)
 
     }
 }
