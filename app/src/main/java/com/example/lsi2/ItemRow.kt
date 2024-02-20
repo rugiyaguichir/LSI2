@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -20,6 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -29,29 +31,30 @@ import com.example.lsi2.ui.theme.Purple40
 @Composable
 fun MyRow(item: ItemRowModel) {
 
-    var isExpanded by remember {
-        mutableStateOf(false)
-    }
 
     Column(
         modifier = Modifier
             .padding(3.dp)
-            .fillMaxWidth()
+            .fillMaxWidth(),
     ) {
-        Box(
-            modifier = Modifier
-                .padding(3.dp)
-                .size(64.dp)
-                .clip(CircleShape)
-        ) {
-            Image(
-                painter = painterResource(id = item.imageId),
-                contentDescription = "image",
-                contentScale = ContentScale.Crop,
-                modifier = Modifier.border(2.dp, Purple40)
-            )
-        }
-        Text(text = item.title)
+            Box(
+                modifier = Modifier
+                    .padding(3.dp)
+                    .size(64.dp)
+                    .clip(CircleShape)
+                    .border(
+                        shape = CircleShape,
+                        width = 1.dp,
+                        color = Color.White)
 
+            ) {
+                Image(
+                    painter = painterResource(id = item.imageId),
+                    contentDescription = "image",
+                    contentScale = ContentScale.Crop
+                )
+            }
+            Text(text = item.title)
+
+        }
     }
-}
